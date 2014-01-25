@@ -36,6 +36,16 @@ public class MicrophoneInput
 		audioSource.Play();
 	}
 
+	void Restart()
+	{
+		Debug.Log( "[Microphone] Error Detected - Restarting Microphone" );
+		//Microphone.End( deviceName );
+		//audioSource.clip = Microphone.Start(deviceName, true, 60*60, 44100);
+		audioSource.Play();
+	}
+
+	float timer = 0.5f;
+
 	public void UpdateTest()
 	{
 		if( string.IsNullOrEmpty( deviceName ) )
@@ -46,10 +56,17 @@ public class MicrophoneInput
 		if( timeSinceLastLockOut > 0.0f )
 			return;
 
-		TestForBang();
+		float bangbang = TestForBang();
+
+		timer -= Time.deltaTime;
+		if( bangbang == 0.0f && timer < 0.0f)
+		{
+			Restart();
+			timer = 0.5f;
+		}
 	}
 
-	public void TestForBang()
+	public float TestForBang()
 	{
 		const int numSamples = 1024;
 		var samples = new float[numSamples];
@@ -77,5 +94,7 @@ public class MicrophoneInput
 
 			OnHammer();
 		}
+
+		return maxSample;
 	}
 }

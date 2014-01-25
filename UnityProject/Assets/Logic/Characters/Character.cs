@@ -13,6 +13,7 @@ public enum CharacterDirection
 public class Character : MonoBehaviour
 {
 	public CharacterSpriteSet[] CharacterSpriteSets;
+	public CharacterSpeech CharacterSpeech;
 	
 	public void SetBodyColor(Color c)
 	{
@@ -29,5 +30,10 @@ public class Character : MonoBehaviour
 		CharacterSpriteSets.ToList().ForEach(q=>q.gameObject.active = false);
 		
 		CharacterSpriteSets[(int)c].gameObject.active = true;
+	}
+
+	public void Speak(string message)
+	{
+		CharacterSpeech.Speak( message );
 	}
 }
