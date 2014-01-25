@@ -47,6 +47,6 @@ public class Character : MonoBehaviour
 	
 	public void SetRandomSkinColor()
 	{
-		SetSkinColor(SkinColors[Random.Range(0, SkinColors.Length)]);
+		SetSkinColor(SkinColors[UnityEngine.Random.Range(0, SkinColors.Length)]);
 	}
 }
