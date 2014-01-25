@@ -1,0 +1,28 @@
+using UnityEngine;
+using System.Collections;
+
+public class EntryPoint : MonoBehaviour
+{
+	MicrophoneInput input;
+
+	void Awake()
+	{
+		//	Construct all systems.
+<<<<<<< HEAD
+		new MicrophoneInput();
+=======
+		new CharacterFactory();
+		input = new MicrophoneInput();
+>>>>>>> f4965bf0e36166d3a57b3efbbc6c2df640d17b34
+	}
+
+	void Start()
+	{
+	
+	}
+	
+	void Update()
+	{
+		input.UpdateTest();
+	}
+}
