@@ -1,0 +1,21 @@
+{
+  "accusedData": {
+    "Name": "Richard Bangs",
+    "FaceTexture": "",
+    "Gender": "Not Sure",
+    "Age": 23,
+    "Crime": "Rape"
+  },
+  "announcements": [
+    {
+      "Source": "Prosecution",
+      "Message": "HE'S CLEARLY GUILTY, HE'S GOT A FUNNY LOOKING BEARD",
+      "Influence": 0.5
+    },
+    {
+      "Source": "Prosecution",
+      "Message": "HE'S CLEARLY GUILTY, HE'S GOT A FUNNY LOOKING BEARD",
+      "Influence": 0.5
+    }
+  ]
+}

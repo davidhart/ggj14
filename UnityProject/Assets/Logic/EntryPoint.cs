@@ -9,6 +9,7 @@ public class EntryPoint : MonoBehaviour
 	{
 		//	Construct all systems.
 		input = new MicrophoneInput();
+		new DataManager();
 	}
 
 	void Start()
