@@ -4,15 +4,26 @@ using System.Collections.Generic;
 
 public class CharacterFactory
 {
-	List<Character> Characters = new List<Character>();
+	public const string PathToCharacterPrefab = "Prefabs/Characters/Character";
 
-	public static CharacterFactory Instance;
-
-	public void CreateCharacter( string pathToCharacterPrefab )
+	public static Character CreateCharacter()
 	{
-		var characterGO = Resources.Load( pathToCharacterPrefab ) as GameObject;
-		var characterScript = characterGO.GetComponent< Character >();
+		var characterPrefab = Resources.Load( PathToCharacterPrefab ) as GameObject;
+		
+		var characterGo = GameObject.Instantiate(characterPrefab) as GameObject;
+		
+		var characterScript = characterGo.GetComponent< Character >();
 
-		Characters.Add( characterScript );
+		return characterScript;
+	}
+	
+	public static Character CreateRandomCharacter()
+	{
+		var c = CreateCharacter();
+		
+		c.SetBodyColor(ColorUtil.RandomColor());
+		c.SetSkinColor(ColorUtil.RandomColor());
+		
+		return c;
 	}
 }
