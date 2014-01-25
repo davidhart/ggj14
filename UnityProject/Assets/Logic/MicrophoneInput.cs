@@ -4,17 +4,53 @@ using System.Linq;
 
 public class MicrophoneInput
 {
+	AudioSource audioSource;
+	string deviceName;
+
 	public MicrophoneInput()
 	{
 		var newGO = new GameObject( "Microphone" );
-		var audioSource = newGO.AddComponent< AudioSource >();
+		audioSource = newGO.AddComponent< AudioSource >();
 
-
-		Debug.Log ( "MICROPHONE DEVICES: " );
-		foreach( var device in Microphone.devices )
+		if( Microphone.devices.Length == 0 )
 		{
-			Debug.Log ( device );
+			Debug.LogError( "No Microphone Devices Detected" );
+			deviceName = string.Empty;
 		}
-		audioSource.clip = Microphone.Start("Built-in Microphone", true, 10, 44100);
+
+		deviceName = Microphone.devices[0];
+		Debug.Log( "Using Microphone Device: " + deviceName );
+
+		audioSource.clip = Microphone.Start(deviceName, true, 3, 44100);
+	}
+
+	float timer = 3.0f;
+
+	public void UpdateTest()
+	{
+		if( string.IsNullOrEmpty( deviceName ) )
+			return;
+
+		timer -= Time.deltaTime;
+
+		if( timer > 0.0f )
+			return;
+
+		Debug.Log ( "Playing" );
+
+		timer = 5.0f;
+
+		Microphone.End( deviceName );
+
+		audioSource.Play();
+	}
+
+	public void TestForBang()
+	{
+		var samples = new float[audioSource.clip.samples * audioSource.clip.channels];
+
+		//AudioSource
+
+		//for( int nIndex = 0; nIndex < samples.
 	}
 }
