@@ -37,9 +37,9 @@ public class CourtScene : MonoBehaviour
 								1 );
 		Background.transform.localScale = size;
 		
-		Accused = PopulateCharacter(AccusedNode);
-		Defendant = PopulateCharacter(DefendantNode);
-		Prosecution = PopulateCharacter(ProsecutionNode);
+		Accused = CharacterFactory.CreateRandomCharacter(AccusedNode);
+		Defendant = CharacterFactory.CreateRandomCharacter(DefendantNode);
+		Prosecution = CharacterFactory.CreateRandomCharacter(ProsecutionNode);
 		
 		foreach (Transform t in JuryNodes)
 		{
@@ -52,29 +52,17 @@ public class CourtScene : MonoBehaviour
 		}
 	}
 	
-	Character PopulateCharacter(Transform parent)
-	{
-		var c = CharacterFactory.CreateRandomCharacter();
-		
-		c.transform.parent = parent;
-		c.transform.localPosition = Vector3.zero;
-		c.transform.localScale = Vector3.one;
-		
-		return c;
-	}
-	
 	List<Character> PopulateCharactersMulti(Transform parent, int count, bool horizontal)
 	{
 		var characters = new List<Character>();
 	
 		for (int i = 0; i < count; ++i)
 		{
-			var c = PopulateCharacter(parent);
+			var c = CharacterFactory.CreateRandomCharacter(parent);
 			
 			float offsetX = horizontal ? HorizontalCharacterSpacing * i - HorizontalCharacterSpacing * (count / 2) : 0;
 			float offsetY = !horizontal ? VerticalCharacterSpacing * i - VerticalCharacterSpacing * (count / 2) : 0;
 			
-			c.transform.parent = parent;
 			c.transform.localPosition = new Vector3(offsetX, offsetY, 0);
 			
 			characters.Add(c);

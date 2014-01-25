@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class CharacterFactory
 {
-	public const string PathToCharacterPrefab = "Prefabs/Characters/Character";
-
+	const string PathToCharacterPrefab = "Prefabs/Characters/Character";
+	
 	public static Character CreateCharacter( Transform rootObject )
 	{
 		var characterPrefab = Resources.Load( PathToCharacterPrefab ) as GameObject;
@@ -15,6 +15,7 @@ public class CharacterFactory
 		characterGo.transform.parent = rootObject;
 		characterGo.transform.localPosition = Vector3.zero;
 		characterGo.transform.localRotation = Quaternion.identity;
+		characterGo.transform.localScale = Vector3.one;
 		
 		var characterScript = characterGo.GetComponent< Character >();
 
@@ -26,7 +27,7 @@ public class CharacterFactory
 		var c = CreateCharacter( rootObject );
 		
 		c.SetBodyColor(ColorUtil.RandomColor());
-		c.SetSkinColor(ColorUtil.RandomColor());
+		c.SetRandomSkinColor();
 		
 		return c;
 	}

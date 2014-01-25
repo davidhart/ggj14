@@ -15,6 +15,8 @@ public class Character : MonoBehaviour
 	public CharacterSpriteSet[] CharacterSpriteSets;
 	public CharacterSpeech CharacterSpeech;
 	
+	public Color[] SkinColors;
+	
 	public void SetBodyColor(Color c)
 	{
 		CharacterSpriteSets.ToList().ForEach(q=>q.SetBodyColor(c));
@@ -35,5 +37,10 @@ public class Character : MonoBehaviour
 	public void Speak(string message)
 	{
 		CharacterSpeech.Speak( message );
+	}
+	
+	public void SetRandomSkinColor()
+	{
+		SetSkinColor(SkinColors[Random.Range(0, SkinColors.Length)]);
 	}
 }
