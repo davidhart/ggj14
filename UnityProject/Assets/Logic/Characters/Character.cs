@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System;
 
 public enum CharacterDirection
 {
@@ -34,9 +35,14 @@ public class Character : MonoBehaviour
 		CharacterSpriteSets[(int)c].gameObject.active = true;
 	}
 
-	public void Speak(string message)
+	public void ClearSpeech()
 	{
-		CharacterSpeech.Speak( message );
+		CharacterSpeech.ClearSpeech();
+	}
+
+	public void Speak(string message, System.Action onFinished )
+	{
+		CharacterSpeech.Speak( message, onFinished );
 	}
 	
 	public void SetRandomSkinColor()

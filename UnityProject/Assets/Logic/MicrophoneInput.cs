@@ -11,7 +11,7 @@ public class MicrophoneInput
 	//	Use me if we have to... Hardcoding a noise for now.
 //	Queue<float> movingAverageBackgroundNoise = new Queue<float>();
 
-	const float noiseLevel = 0.5f;
+	const float noiseLevel = 0.8f;
 	const float lockOutTime = 0.5f;
 
 	float timeSinceLastLockOut = 0.0f;
@@ -39,8 +39,6 @@ public class MicrophoneInput
 	void Restart()
 	{
 		Debug.Log( "[Microphone] Error Detected - Restarting Microphone" );
-		//Microphone.End( deviceName );
-		//audioSource.clip = Microphone.Start(deviceName, true, 60*60, 44100);
 		audioSource.Play();
 	}
 

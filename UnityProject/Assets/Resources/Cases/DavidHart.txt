@@ -10,13 +10,33 @@
   "announcements": [
     {
       "Source": "Prosecution",
-      "Message": "HE'S CLEARLY GUILTY, HE'S GOT A FUNNY LOOKING BEARD",
+      "Message": "He's clearly guilty, he's got a funny looking beard.",
       "Influence": 0.5
     },
     {
+      "Source": "Defense",
+      "Message": "Our defendent doesn't even have a beard, the prosecution is clearly wrong.",
+      "Influence": -0.5
+    }
+    {
       "Source": "Prosecution",
-      "Message": "HE'S CLEARLY GUILTY, HE'S GOT A FUNNY LOOKING BEARD",
-      "Influence": 0.5
+      "Message": "He definately had a beard at the time of the robbery, I'd like to draw your attention to Exhibit A, CCTV footage.",
+      "Influence": -0.5
+    }
+    {
+      "Source": "Defense",
+      "Message": "The footage is fuzzy and difficult to make out, that could have been anyone.",
+      "Influence": -0.5
+    }
+    {
+      "Source": "Defense",
+      "Message": "I'd like to present the accused's testimony, which shows he was nowhere near the bank at the time of the robbery.",
+      "Influence": -0.5
+    }
+    {
+      "Source": "Prosecution",
+      "Message": "You are rubber and I am glue.",
+      "Influence": -0.5
     }
   ]
 }

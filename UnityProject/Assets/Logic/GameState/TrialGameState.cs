@@ -1,44 +1,104 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TrialGameState : BaseGameState
 {
-	Character dave;
+	CaseData CurrentCase;
+	int currentAnnouncement;
+
+	List<Character> Jury;
+	Character Defense;
+	Character Prosecution;
+	Character Accused;
+
+	Dictionary<TrialAnnouncement.eSource, Character> characterLookup;
+
 	public override void OnEnter()
 	{
-		var GO = new GameObject( "CharacterRoot" );
-		GO.transform.localPosition = Vector3.zero;
-		GO.transform.localRotation = Quaternion.identity;
-		GO.transform.localScale = Vector3.one;
-
-		GO = GameObject.Find( "Panel" );
-
-		var rand = new System.Random();
-
-		for( int nIndex = 0; nIndex < 1; nIndex++ )
-		{
-			var character = CharacterFactory.CreateRandomCharacter( GO.transform );
-
-			float x = ( Screen.width * (float)rand.NextDouble() ) - ( Screen.width / 2.0f );
-			float y = ( Screen.height * (float)rand.NextDouble() ) - ( Screen.height / 2.0f );
-
-			//character.gameObject.transform.localPosition = new UnityEngine.Vector3( x, y, 0.0f );
-			character.gameObject.transform.localPosition = new UnityEngine.Vector3( 0.0f, 0.0f, 0.0f );
-
-			dave = character;
-		}
+		CurrentCase = DataManager.Instance.Cases[0];
+		Jury = new List<Character>();
+		characterLookup =  new Dictionary<TrialAnnouncement.eSource, Character>();
+		currentAnnouncement = -1;
 
 		MicrophoneInput.OnHammer += OnHammer;
+
+		SetupScene();
+
+		NextAnnouncement();
 	}
 
-	public override void OnExit ()
+	void SetupScene()
+	{
+		GameObject GO = GameObject.Find( "Panel" );
+		
+		//	Jury
+		for( int nIndex = 0; nIndex < 12; nIndex++ )
+		{
+			var jurer = CharacterFactory.CreateRandomCharacter( GO.transform );
+			Jury.Add( jurer );
+			
+			jurer.gameObject.transform.localPosition = new Vector3( ( nIndex - 6 ) * 40, 250, 0 );
+		}
+		
+		//	Defense
+		Defense = CharacterFactory.CreateRandomCharacter( GO.transform );
+		Defense.gameObject.transform.localPosition = new Vector3( 0, 100, 0 );
+		
+		//	Prosecution
+		Prosecution = CharacterFactory.CreateRandomCharacter( GO.transform );
+		Prosecution.gameObject.transform.localPosition = new Vector3( 0, -100, 0 );
+		
+		//	Accused
+		Accused = CharacterFactory.CreateRandomCharacter( GO.transform );
+		Accused.gameObject.transform.localPosition = new Vector3( 0, -300, 0 );
+
+		characterLookup.Add( TrialAnnouncement.eSource.Accused, Accused );
+		characterLookup.Add( TrialAnnouncement.eSource.Defense, Defense );
+		characterLookup.Add( TrialAnnouncement.eSource.Prosecution, Prosecution );
+	}
+
+	public override void OnExit()
 	{
 		MicrophoneInput.OnHammer -= OnHammer;
 	}
 
+	public void OnSpeechComplete()
+	{
+		NextAnnouncement();
+	}
+
+	Character currentSpeaker;
+
+	bool NextAnnouncement()
+	{
+		currentAnnouncement++;
+
+		Debug.Log ( "Showing Ann " + currentAnnouncement );
+
+		if( currentSpeaker )
+			currentSpeaker.ClearSpeech();
+
+		if( currentAnnouncement >= CurrentCase.announcements.Count )
+			return true;
+
+		var announcement = CurrentCase.announcements[currentAnnouncement];
+
+		Character teller = characterLookup[announcement.Source];
+		teller.Speak( announcement.Message, OnSpeechComplete );
+
+		currentSpeaker = teller;
+
+		return false;
+	}
+
 	void OnHammer()
 	{
-		dave.Speak( "This is a test message." );
+		//Accused.Speak( "I didn't do it...", OnSpeechComplete );
+
+		var GO = GameObject.Instantiate( Resources.Load( "Prefabs/Order" ) ) as GameObject;
+		GO.transform.parent = GameObject.Find ( "Panel" ).transform;
 	}
 
 	public override bool Update (float timeInState)
