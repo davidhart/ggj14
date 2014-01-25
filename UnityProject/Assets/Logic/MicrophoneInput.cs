@@ -9,7 +9,7 @@ public class MicrophoneInput
 	string deviceName;
 
 	//	Use me if we have to... Hardcoding a noise for now.
-	Queue<float> movingAverageBackgroundNoise = new Queue<float>();
+//	Queue<float> movingAverageBackgroundNoise = new Queue<float>();
 
 	const float noiseLevel = 0.5f;
 	const float lockOutTime = 0.5f;
@@ -54,10 +54,9 @@ public class MicrophoneInput
 		const int numSamples = 1024;
 		var samples = new float[numSamples];
 
-		samples = audioSource.GetOutputData( numSamples, 0 );
+		audioSource.GetOutputData( samples, 0 );
 
 		float maxSample = -1.0f;
-		float sumOfSamples = 0.0f;
 		float x = 0.0f;
 		foreach( var sample in samples )
 		{		
