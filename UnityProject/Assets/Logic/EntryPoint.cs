@@ -3,10 +3,12 @@ using System.Collections;
 
 public class EntryPoint : MonoBehaviour
 {
+	MicrophoneInput input;
+
 	void Awake()
 	{
 		//	Construct all systems.
-		new MicrophoneInput();
+		input = new MicrophoneInput();
 	}
 
 	void Start()
@@ -16,5 +18,6 @@ public class EntryPoint : MonoBehaviour
 	
 	void Update()
 	{
+		input.UpdateTest();
 	}
 }
