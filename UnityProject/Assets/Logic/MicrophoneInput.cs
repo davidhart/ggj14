@@ -39,8 +39,8 @@ public class MicrophoneInput
 	void Restart()
 	{
 		Debug.Log( "[Microphone] Error Detected - Restarting Microphone" );
-		Microphone.End( deviceName );
-		audioSource.clip = Microphone.Start(deviceName, true, 60*60, 44100);
+		//Microphone.End( deviceName );
+		//audioSource.clip = Microphone.Start(deviceName, true, 60*60, 44100);
 		audioSource.Play();
 	}
 
