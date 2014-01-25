@@ -22,14 +22,13 @@ public class CourtScene : MonoBehaviour
 	
 	public UITiledSprite Background;
 	
-	private Character Accused;
-	private Character Defendant;
-	private Character Prosecution;
-	private List<Character> Jury = new List<Character>();
-	private List<Character> Rabble = new List<Character>();
-
-	// Use this for initialization
-	void Start ()
+	public Character Accused;
+	public Character Defendant;
+	public Character Prosecution;
+	public List<Character> Jury = new List<Character>();
+	public List<Character> Rabble = new List<Character>();
+	
+	void Awake ()
 	{
 	
 		var size = new Vector3( AnchorRight.transform.localPosition.x - AnchorLeft.transform.localPosition.x, 

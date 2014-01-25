@@ -14,6 +14,8 @@ public class TrialGameState : BaseGameState
 	Character Accused;
 
 	Dictionary<TrialAnnouncement.eSource, Character> characterLookup;
+	
+	const string PathToTrialScenePrefab = "Prefabs/Scenes/CourtScene";
 
 	public override void OnEnter()
 	{
@@ -33,7 +35,26 @@ public class TrialGameState : BaseGameState
 	{
 		GameObject GO = GameObject.Find( "Panel" );
 		
+		GameObject scenePrefab = Resources.Load(PathToTrialScenePrefab) as GameObject;
+		GameObject sceneGo = GameObject.Instantiate(scenePrefab) as GameObject;
+		
+		sceneGo.transform.parent = GO.transform;
+		sceneGo.transform.localPosition = Vector3.zero;
+		sceneGo.transform.localScale = Vector3.one;
+		sceneGo.transform.localRotation = Quaternion.identity;
+		
+		CourtScene scene = sceneGo.GetComponent<CourtScene>();
+		
+		Defense = scene.Defendant;
+		Prosecution = scene.Prosecution;
+		Accused = scene.Accused;
+		
+		Debug.Log ( "WAT" + Accused );
+		
+		Jury.AddRange(scene.Jury);
+		
 		//	Jury
+		/*
 		for( int nIndex = 0; nIndex < 12; nIndex++ )
 		{
 			var jurer = CharacterFactory.CreateRandomCharacter( GO.transform );
@@ -53,7 +74,7 @@ public class TrialGameState : BaseGameState
 		//	Accused
 		Accused = CharacterFactory.CreateRandomCharacter( GO.transform );
 		Accused.gameObject.transform.localPosition = new Vector3( 0, -300, 0 );
-
+		*/
 		characterLookup.Add( TrialAnnouncement.eSource.Accused, Accused );
 		characterLookup.Add( TrialAnnouncement.eSource.Defense, Defense );
 		characterLookup.Add( TrialAnnouncement.eSource.Prosecution, Prosecution );
