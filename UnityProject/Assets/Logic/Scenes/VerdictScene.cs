@@ -16,6 +16,9 @@ public class VerdictScene : MonoBehaviour
 	public UIAnchor AnchorRight;
 	public UIAnchor AnchorLeft;
 	
+	public Transform WeFindTheDefendantParent;
+	public Transform VerdictTextParent;
+	
 	public UISprite Background;
 	
 	public Transform JuryStartNode;
@@ -26,6 +29,9 @@ public class VerdictScene : MonoBehaviour
 	public GameObject AndTheVerdictIsText;
 	
 	private bool IsDone = false;
+	private bool IsGuilty = false;
+	
+	private ZoomText CaseCompleteText = null;
 	
 	public List<Character> Jury = new List<Character>();
 	
@@ -43,10 +49,18 @@ public class VerdictScene : MonoBehaviour
 	{
 		Jury.AddRange(jury);
 		
+		int i = 0;
 		
 		foreach(Character j in Jury)
 		{
-			j.transform.parent = JuryStartNode;
+			GameObject goParent = new GameObject("JuryParent");
+			
+			goParent.transform.parent = JuryStartNode;
+			goParent.transform.localPosition = new Vector3(i++ * JurySeparation - JurySeparation * Jury.Count * 0.5f, 0, 0);
+			goParent.transform.localScale = Vector3.one;
+			goParent.transform.localRotation = Quaternion.identity;
+		
+			j.transform.parent = goParent.transform;
 			j.transform.localPosition = Vector3.zero;
 			j.transform.localScale = Vector3.one;
 			j.transform.localRotation = Quaternion.identity;	
@@ -55,6 +69,8 @@ public class VerdictScene : MonoBehaviour
 	
 	public void SetupAnimationQueue(int numJuryGuilty)
 	{
+		IsGuilty = numJuryGuilty >= Jury.Count / 2;
+	
 		var isInFavor = new List<bool>();
 		var willChangeMind = new List<bool>();
 		
@@ -130,8 +146,8 @@ public class VerdictScene : MonoBehaviour
 	
 		if ( TransitionQueue.Count == 0 )
 		{
-			Debug.Log( "VERDICT COMPLETE" );
-			IsDone = true;
+			StartCoroutine("DelayCoroutine");
+			
 			return;
 		}
 		
@@ -144,6 +160,30 @@ public class VerdictScene : MonoBehaviour
 	public bool IsAnimating()
 	{
 		return IsDone;
+	}
+	
+	private IEnumerator DelayCoroutine()
+	{
+		Debug.Log("DELAY ROUTINE");
+	
+		yield return new WaitForSeconds(1.5f);
+		
+		ZoomText text1 = ZoomText.CreateZoomText("We find the defendant..", WeFindTheDefendantParent);
+		text1.BeginAnimation();
+		text1.Text.transform.localScale = new Vector3(40, 40, 1);
+		
+		yield return new WaitForSeconds(0.8f);
+		
+		ZoomText text2 = ZoomText.CreateZoomText(IsGuilty ? "GUILTY!" : "NOT GUILTY!", VerdictTextParent);
+		text2.OnAnimationCompleted = CaseCompleteTextCompleted;
+		text2.BeginAnimation();
+	}
+	
+	private void CaseCompleteTextCompleted()
+	{
+		Debug.Log( "VERDICT COMPLETE" );
+		
+		IsDone = true;
 	}
 	
 }
