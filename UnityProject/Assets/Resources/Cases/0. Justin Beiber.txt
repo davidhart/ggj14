@@ -1,0 +1,47 @@
+{
+  "accusedData":
+  {
+    "Name": "Justin Bieber",
+    "FaceTexture": "Justin",
+    "Gender": "Male",
+    "Age": 23,
+    "Crime": "Driving under the influence, and crimes against music."
+  },
+  "announcements": [
+    {
+      "Source": "Prosecution",
+      "Message": "The accused was caught on January 20th, at 23:47, participating in a drag race.",
+      "Influence": 0.5
+    },
+    {
+      "Source": "Defense",
+      "Message": "He was not participating in the drag race, he was just in the wrong place at the wrong time.",
+      "Influence": -0.5
+    }
+    {
+      "Source": "Prosecution",
+      "Message": "It seems he was in the right place, as he was winning.",
+      "Influence": 0.7
+    }
+    {
+      "Source": "Prosecution",
+      "Message": "We have CCTV footage that clearly shows the accused participating in the drag race.",
+      "Influence": 0.7
+    }
+    {
+      "Source": "Defense",
+      "Message": "You cannot actually see him driving, that could have been anyone.",
+      "Influence": -1.0
+    }
+    {
+      "Source": "Prosecution",
+      "Message": "Look, his music is terrible, can't we just agree that he's guilty and force him into retirement",
+      "Influence": 0.5
+    }
+    {
+      "Source": "Defense",
+      "Message": "Sure!",
+      "Influence": 2.0
+    }
+  ]
+}

@@ -4,7 +4,7 @@ using System;
 
 public class CharacterSpeech : MonoBehaviour
 {
-	const float timePerCharacter = 0.06f;
+	const float timePerCharacter = 0.04f;
 	float timerSinceLastCharacter = 0.0f;
 
 	string toDisplay;
@@ -26,7 +26,7 @@ public class CharacterSpeech : MonoBehaviour
 
 	bool IsFinished()
 	{
-		if( timerSinceLastCharacter < -1.0f )
+		if( timerSinceLastCharacter < -2.0f )
 			return true;
 
 		return false;

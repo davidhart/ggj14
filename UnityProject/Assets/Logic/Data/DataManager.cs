@@ -34,7 +34,7 @@ public class DataManager
 		myData.accusedData = new AccusedData();
 		myData.accusedData.Age = 23;
 		myData.accusedData.Gender = "Not Sure";
-		myData.accusedData.Crime = "Rape";
+		myData.accusedData.Crime = "Eating Pie";
 		myData.accusedData.FaceTexture = "";
 
 		myData.announcements = new List<TrialAnnouncement>();
@@ -56,7 +56,9 @@ public class DataManager
 
 		var textAssets = Resources.LoadAll( "Cases", typeof( TextAsset ) );
 
-		foreach( var textAsset in textAssets )
+		var orderedTextAssets = textAssets.OrderBy( q => q.name );
+
+		foreach( var textAsset in orderedTextAssets )
 		{
 			var myCase = new CaseData();
 			Cases.Add( myCase );
