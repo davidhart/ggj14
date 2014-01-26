@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class TrialGameState : BaseGameState
 {
-	CaseData CurrentCase;
+	CaseData currentCase;
 	int currentAnnouncement;
 
 	List<Character> Jury;
 	Character Defense;
 	Character Prosecution;
 	Character Accused;
+	
+	float announcementDelay = 1.0f;
+	float verdictDelay = -1.0f;
+
+	GameObject verdictGO;
+	GameObject sceneGo;
 
 	Dictionary<TrialAnnouncement.eSource, Character> characterLookup;
 	
@@ -19,12 +25,15 @@ public class TrialGameState : BaseGameState
 
 	public override void OnEnter()
 	{
-		CurrentCase = DataManager.Instance.Cases[0];
+		currentCase = DataManager.Instance.CurrentCase;
 		Jury = new List<Character>();
 		characterLookup =  new Dictionary<TrialAnnouncement.eSource, Character>();
 		currentAnnouncement = -1;
 
 		MicrophoneInput.OnHammer += OnHammer;
+
+		announcementDelay = 1.0f;
+		verdictDelay = -1.0f;
 
 		SetupScene();
 
@@ -36,7 +45,7 @@ public class TrialGameState : BaseGameState
 		GameObject GO = GameObject.Find( "Panel" );
 		
 		GameObject scenePrefab = Resources.Load(PathToTrialScenePrefab) as GameObject;
-		GameObject sceneGo = GameObject.Instantiate(scenePrefab) as GameObject;
+		sceneGo = GameObject.Instantiate(scenePrefab) as GameObject;
 		
 		sceneGo.transform.parent = GO.transform;
 		sceneGo.transform.localPosition = Vector3.zero;
@@ -48,33 +57,10 @@ public class TrialGameState : BaseGameState
 		Defense = scene.Defendant;
 		Prosecution = scene.Prosecution;
 		Accused = scene.Accused;
-		
-		Debug.Log ( "WAT" + Accused );
-		
+
 		Jury.AddRange(scene.Jury);
-		
-		//	Jury
-		/*
-		for( int nIndex = 0; nIndex < 12; nIndex++ )
-		{
-			var jurer = CharacterFactory.CreateRandomCharacter( GO.transform );
-			Jury.Add( jurer );
-			
-			jurer.gameObject.transform.localPosition = new Vector3( ( nIndex - 6 ) * 40, 250, 0 );
-		}
-		
-		//	Defense
-		Defense = CharacterFactory.CreateRandomCharacter( GO.transform );
-		Defense.gameObject.transform.localPosition = new Vector3( 0, 100, 0 );
-		
-		//	Prosecution
-		Prosecution = CharacterFactory.CreateRandomCharacter( GO.transform );
-		Prosecution.gameObject.transform.localPosition = new Vector3( 0, -100, 0 );
-		
-		//	Accused
-		Accused = CharacterFactory.CreateRandomCharacter( GO.transform );
-		Accused.gameObject.transform.localPosition = new Vector3( 0, -300, 0 );
-		*/
+
+		characterLookup.Clear();
 		characterLookup.Add( TrialAnnouncement.eSource.Accused, Accused );
 		characterLookup.Add( TrialAnnouncement.eSource.Defense, Defense );
 		characterLookup.Add( TrialAnnouncement.eSource.Prosecution, Prosecution );
@@ -83,6 +69,9 @@ public class TrialGameState : BaseGameState
 	public override void OnExit()
 	{
 		MicrophoneInput.OnHammer -= OnHammer;
+
+		GameObject.Destroy( sceneGo );
+		GameObject.Destroy( verdictGO );
 	}
 
 	public void OnSpeechComplete()
@@ -101,10 +90,10 @@ public class TrialGameState : BaseGameState
 		if( currentSpeaker )
 			currentSpeaker.ClearSpeech();
 
-		if( currentAnnouncement >= CurrentCase.announcements.Count )
+		if( currentAnnouncement >= currentCase.announcements.Count )
 			return true;
 
-		var announcement = CurrentCase.announcements[currentAnnouncement];
+		var announcement = currentCase.announcements[currentAnnouncement];
 
 		Character teller = characterLookup[announcement.Source];
 		teller.Speak( announcement.Message, OnSpeechComplete );
@@ -113,17 +102,54 @@ public class TrialGameState : BaseGameState
 
 		return false;
 	}
-
+	
 	void OnHammer()
 	{
-		//Accused.Speak( "I didn't do it...", OnSpeechComplete );
-
 		var GO = GameObject.Instantiate( Resources.Load( "Prefabs/Order" ) ) as GameObject;
 		GO.transform.parent = GameObject.Find ( "Panel" ).transform;
+
+		GO = GameObject.Instantiate( Resources.Load( "Prefabs/Denied" ) ) as GameObject;
+		GO.transform.parent = GameObject.Find ( "Panel" ).transform;
+
+		if( currentSpeaker )
+		{
+			GO.transform.position = currentSpeaker.transform.position;
+		}
+
+		announcementDelay = 0.6f;
+
+		if( currentSpeaker != null )
+			currentSpeaker.ClearSpeech();
 	}
 
 	public override bool Update (float timeInState)
 	{
+		if( announcementDelay > 0.0f )
+		{
+			announcementDelay -= Time.deltaTime;
+
+			if( announcementDelay <= 0.0f )
+			{
+				NextAnnouncement();
+			}
+		}
+
+		if( currentAnnouncement >= currentCase.announcements.Count )
+		{
+			if( verdictGO == null )
+			{
+				verdictGO = GameObject.Instantiate( Resources.Load( "Prefabs/Verdict" ) ) as GameObject;
+				verdictGO.transform.parent = GameObject.Find ( "Panel" ).transform;
+			}
+
+			verdictDelay -= Time.deltaTime;
+
+			if( verdictDelay < 0.0f )
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 }

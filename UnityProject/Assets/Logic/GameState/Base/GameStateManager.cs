@@ -16,6 +16,7 @@ public class GameStateManager
 		gameStates = new List<BaseGameState>();
 
 		gameStates.Add( new MainMenuGameState() );
+		gameStates.Add( new BioGameState() );
 		gameStates.Add( new TrialGameState() );
 		gameStates.Add( new VerdictGameState() );
 
