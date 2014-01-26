@@ -31,8 +31,6 @@ public class VerdictScene : MonoBehaviour
 	private bool IsDone = false;
 	private bool IsGuilty = false;
 	
-	private ZoomText CaseCompleteText = null;
-	
 	public List<Character> Jury = new List<Character>();
 	
 	private Queue<VerdictTransition> TransitionQueue = new Queue<VerdictTransition>();
