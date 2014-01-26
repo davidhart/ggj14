@@ -1,0 +1,47 @@
+{
+  "accusedData":
+  {
+    "Name": "Simon Grey",
+    "FaceTexture": "Simon",
+    "Gender": "Male",
+    "Age": 33,
+    "Crime": "Indecent Exposure"
+  },
+  "announcements": [
+    {
+      "Source": "Prosecution",
+      "Message": "On January 10th, 13:47, the accused was caught outside the Robert Blackburn building, in nothing but his socks.",
+      "Influence": 0.2
+    },
+    {
+      "Source": "Defense",
+      "Message": "Our defendent has an alibi for the time, he was down the pub.",
+      "Influence": -0.7
+    }
+    {
+      "Source": "Prosecution",
+      "Message": "Do you have any witnesses that could back up this testimony?",
+      "Influence": 0.5
+    }
+    {
+      "Source": "Defense",
+      "Message": "Unfortunately he was on his own at the time.",
+      "Influence": 0.5
+    }
+    {
+      "Source": "Prosecution",
+      "Message": "We have CCTV footage of the incident, that clearly shows a man his nothing but his socks, running around screaming SAUSAGES!!",
+      "Influence": 0.5
+    }
+    {
+      "Source": "Defense",
+      "Message": "The CCTV footage is quite fuzzy, it's difficult to make out, it could be anyone in that footage.",
+      "Influence": -1.0
+    }
+    {
+      "Source": "Prosecution",
+      "Message": "We have matched the knee high rainbow socks to those that are owned by the accused. And his unique chest hair is quite unique.",
+      "Influence": 0.7
+    }
+  ]
+}
