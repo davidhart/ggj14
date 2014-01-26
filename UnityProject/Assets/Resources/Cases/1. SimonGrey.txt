@@ -30,7 +30,7 @@
     }
     {
       "Source": "Prosecution",
-      "Message": "We have CCTV footage of the incident, that clearly shows a man his nothing but his socks, running around screaming SAUSAGES!!",
+      "Message": "We have CCTV footage of the incident, that clearly shows a man wearing nothing but his socks, running around screaming SAUSAGES!!",
       "Influence": 0.5
     }
     {
@@ -40,7 +40,7 @@
     }
     {
       "Source": "Prosecution",
-      "Message": "We have matched the knee high rainbow socks to those that are owned by the accused. And his unique chest hair is quite unique.",
+      "Message": "We have matched the knee high rainbow socks to those that are owned by the accused. And his unique chest hair is quite distinctive.",
       "Influence": 0.7
     }
   ]

@@ -95,6 +95,11 @@ public class TrialGameState : BaseGameState
 
 		VerdictManager.Instance.InfluenceJury( announcement.Influence );
 
+		if( Mathf.Abs( announcement.Influence ) > 0.6f )
+		{
+			TriggerRabble();
+		}
+
 		NextAnnouncement();
 	}
 
@@ -168,6 +173,8 @@ public class TrialGameState : BaseGameState
 		if( randomRabbleTimer < 0.0f )
 		{
 			randomRabbleTimer = 2.5f;
+
+			randomRabbleTimer -= Mathf.Min( Mathf.Abs( VerdictManager.Instance.Influence ), 2.5f );
 
 			RandomRabble();
 		}
