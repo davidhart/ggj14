@@ -57,7 +57,12 @@ public class CourtScene : MonoBehaviour
 	
 		for (int i = 0; i < count; ++i)
 		{
-			var c = CharacterFactory.CreateRandomCharacter(parent);
+			var go = new GameObject( "AnimationOffset" );
+			go.transform.parent = parent;
+			go.transform.localScale = Vector3.one;
+			go.transform.localPosition = Vector3.zero;
+
+			var c = CharacterFactory.CreateRandomCharacter(go.transform);
 			
 			float offsetX = horizontal ? HorizontalCharacterSpacing * i - HorizontalCharacterSpacing * (count / 2) : 0;
 			float offsetY = !horizontal ? VerticalCharacterSpacing * i - VerticalCharacterSpacing * (count / 2) : 0;

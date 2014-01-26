@@ -9,6 +9,7 @@ public class BioGameState : BaseGameState
 
 	public override void OnEnter()
 	{
+		VerdictManager.Instance.Reset();
 		DataManager.Instance.NextCase();
 
 		currentCase = DataManager.Instance.CurrentCase;

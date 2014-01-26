@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class VerdictManager
 {
@@ -20,6 +21,7 @@ public class VerdictManager
 
 	public void InfluenceJury( float influence )
 	{
+		Debug.Log ( "InfluenceJury: " + influence + " Total = " + totalInfluence );
 		totalInfluence += influence;
 	}
 }

@@ -15,7 +15,7 @@ public class VerdictGameState : BaseGameState
 
 	public override void OnEnter ()
 	{
-		Debug.Log( VerdictManager.Instance.Influence );
+		Debug.Log( "Verdict Total = " + VerdictManager.Instance.Influence );
 		
 		SetupScene();
 	}

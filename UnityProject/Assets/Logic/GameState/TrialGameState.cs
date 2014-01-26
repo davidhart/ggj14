@@ -8,6 +8,7 @@ public class TrialGameState : BaseGameState
 	CaseData currentCase;
 	int currentAnnouncement;
 
+	List<Character> Rabble;
 	List<Character> Jury;
 	Character Defense;
 	Character Prosecution;
@@ -21,6 +22,8 @@ public class TrialGameState : BaseGameState
 	GameObject verdictGO;
 	GameObject sceneGo;
 
+	float randomRabbleTimer = 2.5f;
+
 	Dictionary<TrialAnnouncement.eSource, Character> characterLookup;
 	
 	const string PathToTrialScenePrefab = "Prefabs/Scenes/CourtScene";
@@ -29,6 +32,7 @@ public class TrialGameState : BaseGameState
 	{
 		currentCase = DataManager.Instance.CurrentCase;
 		Jury = new List<Character>();
+		Rabble = new List<Character>();
 		characterLookup =  new Dictionary<TrialAnnouncement.eSource, Character>();
 		currentAnnouncement = -1;
 
@@ -61,11 +65,14 @@ public class TrialGameState : BaseGameState
 		Accused = scene.Accused;
 
 		Jury.AddRange(scene.Jury);
+		Rabble.AddRange(scene.Rabble);
 
 		characterLookup.Clear();
 		characterLookup.Add( TrialAnnouncement.eSource.Accused, Accused );
 		characterLookup.Add( TrialAnnouncement.eSource.Defense, Defense );
 		characterLookup.Add( TrialAnnouncement.eSource.Prosecution, Prosecution );
+
+		InitRabble();
 	}
 
 	public override void OnExit()
@@ -110,6 +117,29 @@ public class TrialGameState : BaseGameState
 
 		return false;
 	}
+
+	void InitRabble()
+	{
+		var anim = Resources.Load( "Animations/Rabble" ) as AnimationClip;
+		foreach( var rabble in Rabble )
+		{
+			rabble.transform.parent.gameObject.AddComponent<Animation>();
+			rabble.transform.parent.animation.AddClip( anim, "Rabble" );
+		}
+	}
+
+	void TriggerRabble()
+	{
+		foreach( var rabble in Rabble )
+		{
+			rabble.TriggerRabble();
+		}
+	}
+
+	void RandomRabble()
+	{
+		Rabble[ UnityEngine.Random.Range( 0, Rabble.Count - 1 ) ].TriggerRabble();
+	}
 	
 	void OnHammer()
 	{
@@ -128,10 +158,20 @@ public class TrialGameState : BaseGameState
 
 		if( currentSpeaker != null )
 			currentSpeaker.ClearSpeech();
+
+		TriggerRabble();
 	}
 
 	public override bool Update (float timeInState)
 	{
+		randomRabbleTimer -= Time.deltaTime;
+		if( randomRabbleTimer < 0.0f )
+		{
+			randomRabbleTimer = 2.5f;
+
+			RandomRabble();
+		}
+
 		if( announcementDelay > 0.0f )
 		{
 			announcementDelay -= Time.deltaTime;

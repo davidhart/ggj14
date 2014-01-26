@@ -80,4 +80,28 @@ public class Character : MonoBehaviour
 	{
 		AnimationCompletedCallback();
 	}
+
+	int rabbleLoops = -1;
+	public void TriggerRabble()
+	{
+		if( UnityEngine.Random.value < 0.5f )
+			return;
+
+		int intensity = (int)( UnityEngine.Random.value * 100 ) % 3;
+		transform.parent.animation.Play( "Rabble" );
+
+		rabbleLoops = intensity;
+	}
+
+	void Update()
+	{
+		if( rabbleLoops <= 0 )
+			return;
+
+		if( !transform.parent.animation.IsPlaying( "Rabble" ) )
+		{
+			rabbleLoops--;
+			transform.parent.animation.Play( "Rabble" );
+		}
+	}
 }
