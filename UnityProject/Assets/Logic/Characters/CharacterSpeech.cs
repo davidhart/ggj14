@@ -46,9 +46,9 @@ public class CharacterSpeech : MonoBehaviour
 
 			if( IsFinished() )
 			{
-				OnFinished();
-
+				System.Action del = OnFinished;
 				OnFinished = null;
+				del();
 			}
 
 			return;
@@ -69,9 +69,11 @@ public class CharacterSpeech : MonoBehaviour
 		numCharactersDisplayed = 0;
 		toDisplay = message;
 
+		Debug.Log (message );
+
 		OnFinished = onFinished;
 
 		int numberOfLines = label.font.WrapText( message, label.lineWidth / label.transform.localScale.x, 10 ).Split( '\n' ).Length;
-		label.transform.localPosition = new Vector3( 0.0f, 35.0f + ( 25.0f * numberOfLines ) );
+		label.transform.localPosition = new Vector3( 0.0f, 35.0f + ( 25.0f * numberOfLines ), -10.0f );
 	}
 }
