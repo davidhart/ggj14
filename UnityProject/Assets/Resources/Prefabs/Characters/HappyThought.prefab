@@ -78,8 +78,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 11.4935436, z: -.753674507}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   mTex: {fileID: 2800000, guid: 5e8f3a7a1e1f24d92b474e64b367427b, type: 1}
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mDepth: 2
+  mDepth: 6
   mAtlas: {fileID: 11400000, guid: be1b1e67d0a074438a500e3ca8de51c5, type: 2}
   mSpriteName: happy
 --- !u!1001 &100100000

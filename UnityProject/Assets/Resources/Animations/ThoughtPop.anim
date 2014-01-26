@@ -154,8 +154,8 @@ AnimationClip:
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_Events:
-  - time: 2.88333344
-    functionName: 
+  - time: 2
+    functionName: AnimationFinished
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

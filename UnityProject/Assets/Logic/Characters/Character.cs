@@ -25,6 +25,8 @@ public class Character : MonoBehaviour
 	private CharacterDirection PrevDirection;
 	private CharacterDirection NewDirection;
 	
+	public Transform ThoughtOffset;
+	
 	void Awake()
 	{
 		SetDirectionInternal(CharacterDirection.Down);
@@ -147,5 +149,17 @@ public class Character : MonoBehaviour
 	public void FaceRight()
 	{
 		SetDirection(CharacterDirection.Right);
+	}
+	
+	public void DisplayThought(bool happy)
+	{
+		if ( happy )
+		{
+			ThoughtBubble.CreateHappyThought(ThoughtOffset);
+		}
+		else
+		{
+			ThoughtBubble.CreateSadThought(ThoughtOffset);
+		}
 	}
 }
