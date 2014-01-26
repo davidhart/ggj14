@@ -145,7 +145,21 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_Events:
   - time: 0
+    functionName: FaceUp
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
     functionName: PlayWalkAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.26666665
+    functionName: FaceLeft
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -159,6 +173,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.9666667
+    functionName: FaceDown
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.98333335
     functionName: StopWalkAnimation
     data: 
     objectReferenceParameter: {fileID: 0}

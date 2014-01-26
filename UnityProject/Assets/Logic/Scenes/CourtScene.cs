@@ -37,6 +37,7 @@ public class CourtScene : MonoBehaviour
 		Background.transform.localScale = size;
 		
 		Accused = CharacterFactory.CreateRandomCharacter(AccusedNode);
+		Accused.SetDirection(CharacterDirection.Right);
 		Defendant = CharacterFactory.CreateRandomCharacter(DefendantNode);
 		Prosecution = CharacterFactory.CreateRandomCharacter(ProsecutionNode);
 		
@@ -66,6 +67,11 @@ public class CourtScene : MonoBehaviour
 			
 			float offsetX = horizontal ? HorizontalCharacterSpacing * i - HorizontalCharacterSpacing * (count / 2) : 0;
 			float offsetY = !horizontal ? VerticalCharacterSpacing * i - VerticalCharacterSpacing * (count / 2) : 0;
+			
+			if (horizontal)
+				c.SetDirection(CharacterDirection.Down);
+			else
+				c.SetDirection(CharacterDirection.Left);
 			
 			c.transform.localPosition = new Vector3(offsetX, offsetY, 0);
 			

@@ -101,7 +101,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: .966666639
+  - time: 0
+    functionName: FaceLeft
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: .983333349
     functionName: AnimationCompleted
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -109,6 +116,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.48333335
+    functionName: FaceDown
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5
     functionName: StopWalkAnimation
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -28,6 +28,7 @@ public class CharacterFactory
 		
 		c.SetBodyColor(ColorUtil.RandomColor());
 		c.SetRandomSkinColor();
+		c.SetDirection(CharacterDirection.Down);
 		
 		return c;
 	}

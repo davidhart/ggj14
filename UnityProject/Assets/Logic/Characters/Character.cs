@@ -22,6 +22,15 @@ public class Character : MonoBehaviour
 	
 	public Action AnimationCompletedCallback;
 	
+	private CharacterDirection PrevDirection;
+	private CharacterDirection NewDirection;
+	
+	void Awake()
+	{
+		SetDirectionInternal(CharacterDirection.Down);
+		PrevDirection = CharacterDirection.Down;
+	}
+	
 	public void SetBodyColor(Color c)
 	{
 		CharacterSpriteSets.ToList().ForEach(q=>q.SetBodyColor(c));
@@ -34,9 +43,16 @@ public class Character : MonoBehaviour
 	
 	public void SetDirection(CharacterDirection c)
 	{
-		CharacterSpriteSets.ToList().ForEach(q=>q.gameObject.active = false);
+		NewDirection = c;
+	}
+	
+	private void SetDirectionInternal(CharacterDirection c)
+	{
+		CharacterSpriteSets.ToList().ForEach(q=>q.gameObject.SetActiveRecursively(false));
 		
-		CharacterSpriteSets[(int)c].gameObject.active = true;
+		CharacterSpriteSets[(int)c].gameObject.SetActiveRecursively(true);
+		
+		PrevDirection = c;
 	}
 
 	public void ClearSpeech()
@@ -95,6 +111,13 @@ public class Character : MonoBehaviour
 
 	void Update()
 	{
+		if ( NewDirection != PrevDirection )
+		{
+			Debug.Log ("change direction");
+			
+			SetDirectionInternal(NewDirection);
+		}
+	
 		if( rabbleLoops <= 0 )
 			return;
 
@@ -103,5 +126,26 @@ public class Character : MonoBehaviour
 			rabbleLoops--;
 			transform.parent.animation.Play( "Rabble" );
 		}
+		
+	}
+	
+	public void FaceDown()
+	{
+		SetDirection(CharacterDirection.Down);
+	}
+	
+	public void FaceUp()
+	{
+		SetDirection(CharacterDirection.Up);
+	}
+	
+	public void FaceLeft()
+	{
+		SetDirection(CharacterDirection.Left);
+	}
+	
+	public void FaceRight()
+	{
+		SetDirection(CharacterDirection.Right);
 	}
 }
