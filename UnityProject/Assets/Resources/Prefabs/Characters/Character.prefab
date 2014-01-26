@@ -280,7 +280,7 @@ MonoBehaviour:
   - {fileID: 11400026}
   - {fileID: 11400026}
   CharacterSpeech: {fileID: 11400004}
-  BodyAnimation: {fileID: 0}
+  BodyAnimation: {fileID: 11100000}
   SkinColors:
   - {r: .529850721, g: .383189201, b: .221430153, a: 1}
   - {r: .932835817, g: .898758709, b: .689184666, a: 1}

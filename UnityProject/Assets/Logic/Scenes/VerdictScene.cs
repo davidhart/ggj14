@@ -25,6 +25,8 @@ public class VerdictScene : MonoBehaviour
 	public GameObject NotGuiltyText;
 	public GameObject AndTheVerdictIsText;
 	
+	private bool IsDone = false;
+	
 	public List<Character> Jury = new List<Character>();
 	
 	private Queue<VerdictTransition> TransitionQueue = new Queue<VerdictTransition>();
@@ -35,19 +37,6 @@ public class VerdictScene : MonoBehaviour
 	    	                    AnchorTop.transform.localPosition.y - AnchorBottom.transform.localPosition.y,
 	        	                1 );
 		Background.transform.localScale = size;
-		
-		var temp = new List<Character>();
-		
-		for (int i = 0; i < 10; ++i)
-		{
-			temp.Add(CharacterFactory.CreateRandomCharacter(transform));
-		}
-		
-		ReParentJury(temp);
-		
-		SetupAnimationQueue(5);
-		
-		BeginVerdictAnimation();
 	}
 	
 	public void ReParentJury(List<Character> jury)
@@ -142,6 +131,7 @@ public class VerdictScene : MonoBehaviour
 		if ( TransitionQueue.Count == 0 )
 		{
 			Debug.Log( "VERDICT COMPLETE" );
+			IsDone = true;
 			return;
 		}
 		
@@ -149,6 +139,11 @@ public class VerdictScene : MonoBehaviour
 		
 		v.Character.AnimationCompletedCallback = PopVerdictAnim;
 		v.Character.PlayVerdictAnimation(v.Guilty, v.Change);
+	}
+	
+	public bool IsAnimating()
+	{
+		return IsDone;
 	}
 	
 }
