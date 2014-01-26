@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Walk
+  serializedVersion: 3
+  m_Compressed: 0
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 8.4478343e-19, y: 120, z: 0}
+        outSlope: {x: -1.99919605, y: 120, z: 0}
+        tangentMode: 229356252
+      - time: .0833333358
+        value: {x: 0, y: 10, z: 0}
+        inSlope: {x: 8.4478343e-19, y: 0, z: 0}
+        outSlope: {x: -1.99919605, y: 0, z: 0}
+        tangentMode: 229356252
+      - time: .166666672
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: -120, z: 0}
+        outSlope: {x: 0, y: -120, z: 0}
+        tangentMode: 229356252
+      - time: .25
+        value: {x: 0, y: -10, z: 0}
+        inSlope: {x: 0, y: 3.05175781e-05, z: 0}
+        outSlope: {x: 0, y: 3.05175781e-05, z: 0}
+        tangentMode: 229356252
+      - time: .333333284
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 120.000069, z: 0}
+        outSlope: {x: 0, y: 120.000069, z: 0}
+        tangentMode: 229356252
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 2
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 8.4478343e-19
+        outSlope: -1.99919605
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.x
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 120
+        outSlope: 120
+        tangentMode: 10
+      - time: .0833333358
+        value: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .166666672
+        value: 0
+        inSlope: -120
+        outSlope: -120
+        tangentMode: 10
+      - time: .25
+        value: -10
+        inSlope: 3.05175781e-05
+        outSlope: 3.05175781e-05
+        tangentMode: 10
+      - time: .333333284
+        value: 0
+        inSlope: 120.000069
+        outSlope: 120.000069
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.y
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: -1.99917889
+        outSlope: -1.99917889
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.z
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  m_EulerEditorCurves: []
+  m_Events: []

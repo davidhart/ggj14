@@ -16,7 +16,11 @@ public class Character : MonoBehaviour
 	public CharacterSpriteSet[] CharacterSpriteSets;
 	public CharacterSpeech CharacterSpeech;
 	
+	public Animation BodyAnimation;
+	
 	public Color[] SkinColors;
+	
+	public Action AnimationCompletedCallback;
 	
 	public void SetBodyColor(Color c)
 	{
@@ -48,5 +52,32 @@ public class Character : MonoBehaviour
 	public void SetRandomSkinColor()
 	{
 		SetSkinColor(SkinColors[UnityEngine.Random.Range(0, SkinColors.Length)]);
+	}
+	
+	public void PlayWalkAnimation()
+	{
+		BodyAnimation.Play("Walk");
+	}
+	
+	public void StopWalkAnimation()
+	{
+		BodyAnimation.Stop("Walk");
+	}
+	
+	public void PlayVerdictAnimation(bool guilty, bool change)
+	{
+		if ( guilty && change )
+			animation.Play("ChangeGuilty");
+		else if ( !guilty && change )
+			animation.Play("ChangeNotGuilty");
+		else if ( guilty && !change )
+			animation.Play("ChooseGuilty");
+		else if ( !guilty && !change )
+			animation.Play("ChooseNotGuilty");
+	}
+	
+	public void AnimationCompleted()
+	{
+		AnimationCompletedCallback();
 	}
 }

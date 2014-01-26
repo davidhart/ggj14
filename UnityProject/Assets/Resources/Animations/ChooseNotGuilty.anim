@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ChooseNotGuilty
+  serializedVersion: 3
+  m_Compressed: 0
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 7.74954748, y: 518.935608, z: 0}
+        outSlope: {x: 7.74954748, y: 518.935608, z: 0}
+        tangentMode: -559038737
+      - time: .616666734
+        value: {x: 4.77888823, y: 343.836578, z: 0}
+        inSlope: {x: 13.7795429, y: 506.861481, z: 0}
+        outSlope: {x: 13.7795429, y: 506.861481, z: 0}
+        tangentMode: -559038737
+      - time: .883333325
+        value: {x: 10.06143, y: 458.393158, z: 0}
+        inSlope: {x: -19.1510239, y: 335.604797, z: 0}
+        outSlope: {x: -19.1510239, y: 335.604797, z: 0}
+        tangentMode: -559038737
+      - time: 1.25
+        value: {x: -11.246151, y: 514.226929, z: 0}
+        inSlope: {x: 134.745728, y: 118.824226, z: 0}
+        outSlope: {x: 134.745728, y: 118.824226, z: 0}
+        tangentMode: -559038737
+      - time: 1.88333344
+        value: {x: 196.235794, y: 568.297424, z: 0}
+        inSlope: {x: 327.603027, y: 85.3744812, z: 0}
+        outSlope: {x: 327.603027, y: 85.3744812, z: 0}
+        tangentMode: -559038737
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 7.74954748
+        outSlope: 7.74954748
+        tangentMode: 10
+      - time: .616666734
+        value: 4.77888823
+        inSlope: 13.7795429
+        outSlope: 13.7795429
+        tangentMode: 10
+      - time: .883333325
+        value: 10.06143
+        inSlope: -19.1510239
+        outSlope: -19.1510239
+        tangentMode: 10
+      - time: 1.25
+        value: -11.246151
+        inSlope: 134.745728
+        outSlope: 134.745728
+        tangentMode: 10
+      - time: 1.88333344
+        value: 196.235794
+        inSlope: 327.603027
+        outSlope: 327.603027
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.x
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 518.935608
+        outSlope: 518.935608
+        tangentMode: 10
+      - time: .883333445
+        value: 458.393158
+        inSlope: 335.604797
+        outSlope: 335.604797
+        tangentMode: 10
+      - time: 1.25
+        value: 514.226929
+        inSlope: 118.824226
+        outSlope: 118.824226
+        tangentMode: 10
+      - time: 1.88333321
+        value: 568.297424
+        inSlope: 85.3744812
+        outSlope: 85.3744812
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.y
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .883333445
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.88333321
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.z
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  m_EulerEditorCurves: []
+  m_Events:
+  - time: 0
+    functionName: PlayWalkAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
+    functionName: AnimationCompleted
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.88333333
+    functionName: StopWalkAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
