@@ -16,6 +16,8 @@ public class MainMenuGameState : BaseGameState
 	public override void OnExit()
 	{
 		MicrophoneInput.OnHammer -= OnHammer;
+
+		hammerHit = false;
 	}
 
 	void OnHammer()

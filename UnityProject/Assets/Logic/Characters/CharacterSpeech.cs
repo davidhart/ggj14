@@ -21,11 +21,12 @@ public class CharacterSpeech : MonoBehaviour
 	public void ClearSpeech()
 	{
 		toDisplay = string.Empty;
+		label.text = string.Empty;
 	}
 
 	bool IsFinished()
 	{
-		if( timerSinceLastCharacter < -0.5f )
+		if( timerSinceLastCharacter < -1.0f )
 			return true;
 
 		return false;
@@ -69,5 +70,8 @@ public class CharacterSpeech : MonoBehaviour
 		toDisplay = message;
 
 		OnFinished = onFinished;
+
+		int numberOfLines = label.font.WrapText( message, label.lineWidth / label.transform.localScale.x, 10 ).Split( '\n' ).Length;
+		label.transform.localPosition = new Vector3( 0.0f, 35.0f + ( 20.0f * numberOfLines ) );
 	}
 }

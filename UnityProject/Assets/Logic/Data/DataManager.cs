@@ -10,12 +10,22 @@ public class DataManager
 
 	public List<CaseData> Cases;
 
+	int currentCase = -1;
+	public CaseData CurrentCase { get { return Cases[ currentCase ]; } }
+
 	public DataManager()
 	{
 		Instance = this;
 
-		//ToJson();
 		Load();
+	}
+
+	public void NextCase()
+	{
+		currentCase++;
+
+		if( currentCase >= Cases.Count )
+			currentCase = 0;
 	}
 
 	public void ToJson()
