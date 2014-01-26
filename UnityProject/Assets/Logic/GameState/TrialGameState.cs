@@ -107,11 +107,14 @@ public class TrialGameState : BaseGameState
 
 	void TriggerJuryThoughts( float intensity )
 	{
-		int numAffected = intensity * 6;
+		int numAffected = (int)( intensity * 6 );
+
+		if( numAffected == 0 )
+			numAffected = 1;
 
 		for( int nIndex = 0; nIndex < numAffected; nIndex++ )
 		{
-			Jury[ UnityEngine.Random.Range( 0, Rabble.Count - 1 ) ].TriggerThoughts( intensity );
+			Jury[ UnityEngine.Random.Range( 0, Jury.Count - 1 ) ].TriggerThoughts( intensity );
 		}
 	}
 

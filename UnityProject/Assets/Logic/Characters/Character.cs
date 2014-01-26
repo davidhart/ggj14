@@ -133,12 +133,12 @@ public class Character : MonoBehaviour
 
 	public void TriggerThoughts( float intensity )
 	{
-		intensity += ( UnityEngine.Random.value ) - 0.5f;
-
-		if( intensity > 0.0f )
+		if( UnityEngine.Random.value < 0.25f )
 		{
-
+			intensity *= -1.0f;
 		}
+
+		DisplayThought( intensity > 0.0f );
 	}
 
 	public void FaceDown()
