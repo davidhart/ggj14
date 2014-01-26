@@ -12,13 +12,9 @@ public class EntryPoint : MonoBehaviour
 		input = new MicrophoneInput();
 		new DataManager();
 		gameStateManager = new GameStateManager();
+		new VerdictManager();
 	}
 
-	void Start()
-	{
-	
-	}
-	
 	void Update()
 	{
 		input.UpdateTest();

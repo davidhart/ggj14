@@ -13,8 +13,10 @@ public class TrialGameState : BaseGameState
 	Character Prosecution;
 	Character Accused;
 	
-	float announcementDelay = 1.0f;
+	float announcementDelay = -1.0f;
 	float verdictDelay = -1.0f;
+
+	Character currentSpeaker;
 
 	GameObject verdictGO;
 	GameObject sceneGo;
@@ -32,7 +34,7 @@ public class TrialGameState : BaseGameState
 
 		MicrophoneInput.OnHammer += OnHammer;
 
-		announcementDelay = 1.0f;
+		announcementDelay = -1.0f;
 		verdictDelay = -1.0f;
 
 		SetupScene();
@@ -72,20 +74,26 @@ public class TrialGameState : BaseGameState
 
 		GameObject.Destroy( sceneGo );
 		GameObject.Destroy( verdictGO );
+
+		currentSpeaker = null;
+
+		currentCase = null;
+		Jury = null;
+		characterLookup = null;
 	}
 
 	public void OnSpeechComplete()
 	{
+		var announcement = currentCase.announcements[currentAnnouncement];
+
+		VerdictManager.Instance.InfluenceJury( announcement.Influence );
+
 		NextAnnouncement();
 	}
-
-	Character currentSpeaker;
 
 	bool NextAnnouncement()
 	{
 		currentAnnouncement++;
-
-		Debug.Log ( "Showing Ann " + currentAnnouncement );
 
 		if( currentSpeaker )
 			currentSpeaker.ClearSpeech();

@@ -7,6 +7,11 @@ public class VerdictGameState : BaseGameState
 	{
 	}
 
+	public override void OnEnter ()
+	{
+		Debug.Log( VerdictManager.Instance.Influence );
+	}
+
 	public override bool Update (float timeInState)
 	{
 		return true;
