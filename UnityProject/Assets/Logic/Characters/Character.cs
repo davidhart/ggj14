@@ -130,7 +130,17 @@ public class Character : MonoBehaviour
 		}
 		
 	}
-	
+
+	public void TriggerThoughts( float intensity )
+	{
+		intensity += ( UnityEngine.Random.value ) - 0.5f;
+
+		if( intensity > 0.0f )
+		{
+
+		}
+	}
+
 	public void FaceDown()
 	{
 		SetDirection(CharacterDirection.Down);

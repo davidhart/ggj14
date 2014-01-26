@@ -100,7 +100,19 @@ public class TrialGameState : BaseGameState
 			TriggerRabble();
 		}
 
+		TriggerJuryThoughts( announcement.Influence );
+
 		NextAnnouncement();
+	}
+
+	void TriggerJuryThoughts( float intensity )
+	{
+		int numAffected = intensity * 6;
+
+		for( int nIndex = 0; nIndex < numAffected; nIndex++ )
+		{
+			Jury[ UnityEngine.Random.Range( 0, Rabble.Count - 1 ) ].TriggerThoughts( intensity );
+		}
 	}
 
 	bool NextAnnouncement()
