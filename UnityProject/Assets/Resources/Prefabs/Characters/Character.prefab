@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
 --- !u!4 &400006
@@ -280,7 +280,7 @@ MonoBehaviour:
   - {fileID: 11400026}
   - {fileID: 11400026}
   CharacterSpeech: {fileID: 11400004}
-  BodyAnimation: {fileID: 11100000}
+  BodyAnimation: {fileID: 0}
   SkinColors:
   - {r: .529850721, g: .383189201, b: .221430153, a: 1}
   - {r: .932835817, g: .898758709, b: .689184666, a: 1}
@@ -330,7 +330,7 @@ MonoBehaviour:
   mMat: {fileID: 2100000, guid: d650d98b3c4028a4a8b7225c1a6482f8, type: 2}
   mTex: {fileID: 0}
   mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 7
+  mPivot: 1
   mDepth: 20
   mFont: {fileID: 11400000, guid: ac44b8a25154a9d40a172ab5851e0986, type: 2}
   mText: 
