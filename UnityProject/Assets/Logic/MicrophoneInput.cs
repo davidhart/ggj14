@@ -11,8 +11,8 @@ public class MicrophoneInput
 	//	Use me if we have to... Hardcoding a noise for now.
 //	Queue<float> movingAverageBackgroundNoise = new Queue<float>();
 
-	const float noiseLevel = 0.9f;
-	const float lockOutTime = 0.5f;
+	const float noiseLevel = 0.995f;
+	const float lockOutTime = 1.0f;
 
 	float timeSinceLastLockOut = 0.0f;
 
